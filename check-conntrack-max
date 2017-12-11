@@ -29,9 +29,9 @@ if [ $cur -le $warn ]; then
   echo "OK: free connrack $free"
   exit 0;
 elif [ $cur -ge $warn ] && [ $cur -lt $crit ]; then
-  echo "WARNING: free $free"
+  echo "WARNING: free conntrack $free"
   exit 1;
 elif [ $cur -ge $crit ]; then
-  echo "CRITICAL: free $free"
+  echo "CRITICAL: free conntrack $free"
   exit 2;
 fi
