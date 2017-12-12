@@ -29,7 +29,7 @@ warn=$(printf "%4.0f" $(echo "$max * $WARNING" |bc))
 crit=$(printf "%4.0f" $(echo "$max * $CRITICAL" |bc))
 
 if [ $cur -le $warn ]; then
-  echo "OK: free connrack $free"
+  echo "OK: free conntrack $free"
   exit 0;
 elif [ $cur -ge $warn ] && [ $cur -lt $crit ]; then
   echo "WARNING: free conntrack $free"
