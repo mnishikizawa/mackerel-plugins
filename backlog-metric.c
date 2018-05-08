@@ -70,10 +70,10 @@ int main(int argc, char **argv) {
             return(-1);
         }
 
-	if((sockfd = socket(AF_NETLINK, SOCK_DGRAM, NETLINK_INET_DIAG)) == -1){
-	    perror("socket ");
-	    return(-1);
-	}
+    if((sockfd = socket(AF_NETLINK, SOCK_DGRAM, NETLINK_INET_DIAG)) == -1){
+        perror("socket ");
+        return(-1);
+    }
 
     memset(&msg, 0, sizeof(msg));
     memset(&sa, 0, sizeof(sa));
@@ -101,7 +101,8 @@ int main(int argc, char **argv) {
     msg.msg_namelen = sizeof(sa);
     msg.msg_iov = iov;
     msg.msg_iovlen = 2;
-if((ret = sendmsg(sockfd, &msg, 0)) == -1){ perror("sendmsg ");
+
+    if((ret = sendmsg(sockfd, &msg, 0)) == -1){ perror("sendmsg ");
       return(-1);
     }
 
@@ -125,7 +126,7 @@ if((ret = sendmsg(sockfd, &msg, 0)) == -1){ perror("sendmsg ");
         if(rtalen > 0){
           attr = (struct rtattr*) (diag_msg+1);
           while(RTA_OK(attr, rtalen)){
-            if(attr->rta_type == INET_DIAG_INFO){	
+            if(attr->rta_type == INET_DIAG_INFO){
                 info = (struct tcp_info*) RTA_DATA(attr);
                 fprintf(stdout, "%s\t%u\t%d\n",
                         metric_name,
@@ -138,6 +139,6 @@ if((ret = sendmsg(sockfd, &msg, 0)) == -1){ perror("sendmsg ");
       }
     }
     return(0);
-}
+  }
 }
 
