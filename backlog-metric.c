@@ -1,10 +1,3 @@
-/*	
- * backlogのカウントをmackerelのメトリックスに投稿する	
- *	
- * Usage: ./backlog-metric -l <listen port>	
- *	
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -54,6 +47,7 @@ int main(int argc, char **argv) {
 
     if (argc !=3) {
         fprintf(stderr, "Usage: %s -l <listen port>\n", argv[0]);
+        exit(2);
     }
 
     while (2 < argc) {
