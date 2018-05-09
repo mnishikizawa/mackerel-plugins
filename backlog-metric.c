@@ -1,10 +1,3 @@
-/*
- * backlogのカウントをmackerelのメトリックスに投稿する
- *
- * Usage: ./backlog-metric -l <listen port>
- *
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -63,12 +56,14 @@ int main(int argc, char **argv) {
         }
         if (strcmp(argv[1], "-l") == 0) {
             port = atoi(argv[2]);
+            printf("port: %d\n", port);
             argc--;
         }
         else {
             fprintf(stderr, "Unknown option: %s\n", argv[1]);
             return(-1);
         }
+    }
 
     if((sockfd = socket(AF_NETLINK, SOCK_DGRAM, NETLINK_INET_DIAG)) == -1){
         perror("socket ");
@@ -101,7 +96,6 @@ int main(int argc, char **argv) {
     msg.msg_namelen = sizeof(sa);
     msg.msg_iov = iov;
     msg.msg_iovlen = 2;
-
     if((ret = sendmsg(sockfd, &msg, 0)) == -1){
       perror("sendmsg ");
       return(-1);
@@ -140,6 +134,5 @@ int main(int argc, char **argv) {
       }
     }
     return(0);
-  }
 }
 
