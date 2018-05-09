@@ -1,3 +1,10 @@
+/*	
+ * backlogのカウントをmackerelのメトリックスに投稿する	
+ *	
+ * Usage: ./backlog-metric -l <listen port>	
+ *	
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
